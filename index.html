@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadruped Auto-Rigger</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://esm.sh/three@0.166.1",
+            "three/addons/": "https://esm.sh/three@0.166.1/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <canvas id="bg"></canvas>
+    </div>
+
+    <div id="ui-container">
+        <div id="top-bar">
+            <h1>Quadruped Auto-Rigger</h1>
+            <div id="loader" class="hidden"></div>
+        </div>
+
+        <div id="main-panel" class="panel">
+            <div id="upload-step">
+                <h2>1. Upload Model</h2>
+                <p>Upload a cat model in GLB, FBX, or OBJ format.</p>
+                <input type="file" id="file-input" accept=".glb,.gltf,.fbx,.obj">
+                <label for="file-input" class="button">Select File</label>
+            </div>
+
+            <div id="marker-step" class="panel-step hidden">
+                <h2>2. Place Markers</h2>
+                <p>Use the camera controls to switch views. Click on the model to place the required markers.</p>
+                <div id="camera-controls">
+                    <button class="cam-btn" data-view="front">Front</button>
+                    <button class="cam-btn" data-view="top">Top</button>
+                    <button class="cam-btn" data-view="side">Side</button>
+                    <button class="cam-btn" data-view="perspective">3D</button>
+                </div>
+                <div id="marker-info">
+                    <p>Placing: <strong id="current-marker-name">None</strong></p>
+                </div>
+                <button id="generate-skeleton-btn" class="button" disabled>Generate Skeleton</button>
+            </div>
+            
+            <div id="adjust-step" class="panel-step hidden">
+                <h2>3. Adjust Skeleton</h2>
+                <p>Click and drag the joints to correct their position. Use the 3D view for best results.</p>
+                 <div class="toggle-container">
+                    <label for="wireframe-toggle">See-through Mesh</label>
+                    <input type="checkbox" id="wireframe-toggle" checked>
+                </div>
+                <button id="reset-btn" class="button">Start Over</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
