@@ -1,5 +1,3 @@
-import { EventEmitter } from './EventEmitter.js';
-
 export class UI extends EventEmitter {
     constructor() {
         super();
