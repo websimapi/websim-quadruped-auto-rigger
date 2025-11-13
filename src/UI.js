@@ -1,3 +1,23 @@
+class EventEmitter {
+    constructor() {
+        this._events = {};
+    }
+
+    on(name, listener) {
+        if (!this._events[name]) {
+            this._events[name] = [];
+        }
+        this._events[name].push(listener);
+    }
+
+    emit(name, ...args) {
+        if (!this._events[name]) {
+            return;
+        }
+        this._events[name].forEach(listener => listener(...args));
+    }
+}
+
 export class UI extends EventEmitter {
     constructor() {
         super();
@@ -63,21 +83,3 @@ export class UI extends EventEmitter {
         this.generateBtn.disabled = !enabled;
     }
 }
-
-// Simple EventEmitter
-function _EventEmitter() {
-  this._events = {};
-}
-_EventEmitter.prototype.on = function(name, listener) {
-  if (!this._events[name]) this._events[name] = [];
-  this._events[name].push(listener);
-};
-_EventEmitter.prototype.emit = function(name, ...args) {
-  if (!this._events[name]) return;
-  this._events[name].forEach(listener => listener(...args));
-};
-// Hack to use a base class from a function
-// It's not pretty, but it works in this context
-// without creating another file for a 10-line class.
-Object.assign(EventEmitter.prototype, _EventEmitter.prototype);
-export function EventEmitter() { _EventEmitter.call(this); }
